@@ -14,6 +14,7 @@ const Home = () => {
   const navigation = useNavigation();
   const settings = useRecoilValue(settingsAtom);
   let [leftTime, setLeftTime] = React.useState([0, 0, 0, 0]);
+  let [editable, setEditable] = React.useState(false);
   let [out, setOut] = React.useState(true);
 
   const texts = [
@@ -29,21 +30,24 @@ const Home = () => {
   const calcLeftTime = React.useCallback(() => {
     let now = moment();
     let left = moment();
-    if (!(moment(settings.lastUpdated).week() === moment().week() || (moment().getWeek() === 0 && moment(settings.lastUpdated).week() + 1 === moment().week() && moment().add(1, "seconds").hours() < 20))) {
+    if (!(moment(settings.lastUpdated).week() === now.week() || (now.day() === 0 && moment(settings.lastUpdated).week() + 1 === now.week() && moment(now).add(1, "seconds").hours() < 20))) {
       navigation.replace("Settings");
     }
     if (settings.gohomeType === 3) {
       return;
     }
+    if (moment(settings.lastUpdated).week() !== now.week() && now.day() === 0) {
+      now.add(1, "week");
+    }
     if (settings.gohomeType === 1) {
-      left = moment().day(5).hour(17).minute(0).second(0).millisecond(0);
+      left.day(5).hour(17).minute(0).second(0).millisecond(0);
     } else if (settings.gohomeType === 2) {
-      left = moment().day(6).hour(8).minute(0).second(0).millisecond(0);
+      left.day(6).hour(8).minute(0).second(0).millisecond(0);
     }
     if (now <= left) {
       setOut(true);
     } else {
-      left = moment().day(7).hour(20).minute(0).second(0).millisecond(0);
+      left.day(7).hour(20).minute(0).second(0).millisecond(0);
       setOut(false);
     }
     let diff = left.diff(now);
@@ -54,6 +58,7 @@ const Home = () => {
     let seconds = duration.seconds();
     ReactNativeHapticFeedback.trigger("impactMedium", { enableVibrateFallback: true, ignoreAndroidSystemSettings: false });
     setLeftTime([days, hours, minutes, seconds]);
+    setEditable(now.day() !== 0 || (now.day() === 0 && moment(now).add(-1, "seconds").hours() >= 20));
   }, [settings.gohomeType]);
 
   React.useEffect(() => {
@@ -75,7 +80,11 @@ const Home = () => {
           activeOpacity={0.5}
           onPress={() => {
             navigation.navigate("Settings");
-          }}>
+          }}
+          style={{
+            opacity: editable ? 1 : 0.5,
+          }}
+          disabled={!editable}>
           <Text style={styles.settings}>집에 가는 날 설정하기</Text>
         </TouchableOpacity>
       </View>
@@ -87,7 +96,7 @@ const Home = () => {
               style={[
                 styles.number,
                 {
-                  width: 30,
+                  width: 32,
                 },
               ]}>
               {leftTime[0]}
@@ -190,7 +199,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 4,
     overflow: "hidden",
-    width: 44,
+    width: 48,
     textAlign: "center",
   },
   unit: {

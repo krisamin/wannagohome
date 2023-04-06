@@ -48,7 +48,7 @@ const App = () => {
         },
       }}>
       <Stack.Navigator
-        initialRouteName={moment(settings.lastUpdated).week() === moment().week() ? "Home" : moment().week() === 0 && moment(settings.lastUpdated).week() + 1 === moment().week() && moment().add(1, "seconds").hours() < 20 ? "Home" : "Settings"}
+        initialRouteName={moment(settings.lastUpdated).week() === moment().week() ? "Home" : moment().day() === 0 && moment(settings.lastUpdated).week() + 1 === moment().week() && moment().add(1, "seconds").hours() < 20 ? "Home" : "Settings"}
         screenOptions={{
           headerShown: false,
         }}>
