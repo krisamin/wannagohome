@@ -8,8 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "push:ios": "appcenter codepush release-react -a admin-isamin.kr/WANNAGOHOME_iOS -d Production",
-    "push:android": "appcenter codepush release-react -a admin-isamin.kr/WANNAGOHOME_Android -d Production"
+    "push:ios": "appcenter codepush release-react -a krisamin/WANNAGOHOME_iOS -d Production",
+    "push:android": "appcenter codepush release-react -a krisamin/WANNAGOHOME_Android -d Production"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",

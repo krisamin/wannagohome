@@ -41,6 +41,10 @@ const Settings = () => {
             activeOpacity={0.5}
             onPress={() => {
               navigation.goBack();
+            }}
+            style={{
+              margin: -20,
+              padding: 20,
             }}>
             <SvgIcon name="BackSvg" fill="#ffffff" />
           </TouchableOpacity>

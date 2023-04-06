@@ -7,6 +7,7 @@ import { settingsAtom } from "@app/utils/atoms";
 
 import { useNavigation } from "@react-navigation/native";
 
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import moment from "moment";
 
 const Home = () => {
@@ -51,6 +52,7 @@ const Home = () => {
     let hours = duration.hours();
     let minutes = duration.minutes();
     let seconds = duration.seconds();
+    ReactNativeHapticFeedback.trigger("impactMedium", { enableVibrateFallback: true, ignoreAndroidSystemSettings: false });
     setLeftTime([days, hours, minutes, seconds]);
   }, [settings.gohomeType]);
 
@@ -156,6 +158,8 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     textDecorationStyle: "solid",
     textDecorationColor: "#ffffff",
+    margin: -20,
+    padding: 20,
   },
   timer: {
     flex: 1,
