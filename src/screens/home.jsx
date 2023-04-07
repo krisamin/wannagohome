@@ -17,12 +17,6 @@ const Home = () => {
   let [editable, setEditable] = React.useState(false);
   let [out, setOut] = React.useState(true);
 
-  const texts = [
-    ["아 졸리다", "이번주는 집에 언제 가나요?", "집가고싶다!!!!", "N주차 잔류중..."],
-    ["치킨라면피자콜라사이다", "지금당장 잠좀자고싶다", "아 심야자습가기 싫다", "너무 행복하다"],
-    ["집에 가면 무슨기분일까;;;", "학교탈출하고싶다 너무", "몰래 집갔다올까;; 집가고싶다", "집보내줘 집보내줘"],
-  ];
-
   const fillZero = (num) => {
     return num < 10 ? "0" + num : num;
   };
@@ -129,17 +123,6 @@ const Home = () => {
       <View style={[styles.sad, { display: settings.gohomeType === 3 ? "flex" : "none" }]}>
         <Text style={styles.big}>잔류</Text>
       </View>
-      <View style={styles.bubbles}>
-        {texts.map((line, index) => (
-          <View style={styles.bubble} key={index}>
-            {line.map((text, index) => (
-              <View style={styles.bubbleItem} key={index}>
-                <Text style={styles.bubbleText}>{text}</Text>
-              </View>
-            ))}
-          </View>
-        ))}
-      </View>
       <View style={styles.copyright}>
         <Text style={styles.by1}>한국디지털미디어고등학교 21기 해킹방어과</Text>
         <Text style={styles.by2}>박성민 개발 | 조현우 디자인 | 김휘림 훈수</Text>
@@ -216,28 +199,6 @@ const styles = StyleSheet.create({
   big: {
     fontSize: 100,
     fontFamily: "Pretendard-Bold",
-    color: "#ffffff",
-  },
-
-  bubbles: {
-    justifyContent: "center",
-    gap: 12,
-    marginBottom: 60,
-  },
-  bubble: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 8,
-  },
-  bubbleItem: {
-    backgroundColor: "#ffffff29",
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 100,
-  },
-  bubbleText: {
-    fontSize: 14,
-    fontFamily: "Pretendard-Medium",
     color: "#ffffff",
   },
 
