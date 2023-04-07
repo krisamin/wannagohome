@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "607140297896",
+    "project_id": "krisamin-wannagohome",
+    "storage_bucket": "krisamin-wannagohome.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607140297896:android:f53cefa2198302cb63d69d",
+        "android_client_info": {
+          "package_name": "kr.isamin.wannagohome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607140297896-5633fs6eht5mgmdnok4cp1i00gttrdpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbNAGG7K60Vi6mRZgGa7hY-mVfxAT3lCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607140297896-5633fs6eht5mgmdnok4cp1i00gttrdpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
