@@ -27,11 +27,12 @@ const Home = () => {
     if (!(moment(settings.lastUpdated).week() === now.week() || (now.day() === 0 && moment(settings.lastUpdated).week() + 1 === now.week() && moment(now).add(1, "seconds").hours() < 20))) {
       navigation.replace("Settings");
     }
-    if (settings.gohomeType === 3) {
-      return;
-    }
     if (moment(settings.lastUpdated).week() !== now.week() && now.day() === 0) {
       now.add(1, "week");
+    }
+    setEditable(now.day() !== 0 || (now.day() === 0 && moment(now).add(-1, "seconds").hours() >= 20));
+    if (settings.gohomeType === 3) {
+      return;
     }
     if (settings.gohomeType === 1) {
       left.day(5).hour(17).minute(0).second(0).millisecond(0);
@@ -52,7 +53,6 @@ const Home = () => {
     let seconds = duration.seconds();
     ReactNativeHapticFeedback.trigger("impactMedium", { enableVibrateFallback: true, ignoreAndroidSystemSettings: false });
     setLeftTime([days, hours, minutes, seconds]);
-    setEditable(now.day() !== 0 || (now.day() === 0 && moment(now).add(-1, "seconds").hours() >= 20));
   }, [settings.gohomeType]);
 
   React.useEffect(() => {
@@ -76,7 +76,7 @@ const Home = () => {
             navigation.navigate("Settings");
           }}
           style={{
-            opacity: editable ? 1 : 0.5,
+            opacity: editable ? 0.8 : 0.4,
           }}
           disabled={!editable}>
           <Text style={styles.settings}>집에 가는 날 설정하기</Text>
